@@ -5,7 +5,6 @@ module ActiveResource
     MINOR = 2
     TINY  = 0
 
-    # the PRE string is used to detect that we're using threadsafe in other gems
     PRE  = 'threadsafe'
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join('.')
