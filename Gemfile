@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', github: 'rails/rails'
-gem 'rails-observers', github: 'rails/rails-observers'
+# gem 'rails', github: 'rails/rails'
+# gem 'rails-observers', github: 'rails/rails-observers'
 
 gemspec
 

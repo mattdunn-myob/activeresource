@@ -298,7 +298,7 @@ module ActiveResource
 
     class << self
       include ThreadsafeAttributes
-      threadsafe_attribute :_headers, :_connection, :_user, :_password, :_site
+      threadsafe_attribute :_headers, :_connection, :_user, :_password, :_site, :_proxy
 
       # Creates a schema for this resource - setting the attributes that are
       # known prior to fetching an instance from the remote system.
@@ -459,8 +459,8 @@ module ActiveResource
       # Gets the \proxy variable if a proxy is required
       def proxy
         # Not using superclass_delegating_reader. See +site+ for explanation
-        if defined?(@proxy)
-          @proxy
+        if _proxy_defined?
+          _proxy
         elsif superclass != Object && superclass.proxy
           superclass.proxy.dup.freeze
         end
@@ -469,7 +469,7 @@ module ActiveResource
       # Sets the URI of the http proxy to the value in the +proxy+ argument.
       def proxy=(proxy)
         self._connection = nil
-        @proxy = proxy.nil? ? nil : create_proxy_uri_from(proxy)
+        self._proxy = proxy.nil? ? nil : create_proxy_uri_from(proxy)
       end
 
       # Gets the \user for REST HTTP authentication.
